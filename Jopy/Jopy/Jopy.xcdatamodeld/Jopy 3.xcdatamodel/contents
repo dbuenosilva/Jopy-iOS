@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C78c" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ItemPedido" representedClassName="ItemPedido" syncable="YES">
+        <attribute name="obs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="produto" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="qtde" attributeType="Decimal" defaultValueString="0" syncable="YES"/>
+        <attribute name="total" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="valor" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="pedido" maxCount="1" deletionRule="Nullify" destinationEntity="Pedido" inverseName="itens" inverseEntity="Pedido" syncable="YES"/>
+    </entity>
+    <entity name="Pedido" representedClassName="Pedido" syncable="YES">
+        <attribute name="aprovadores" attributeType="String" syncable="YES"/>
+        <attribute name="arquivo" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
+        <attribute name="centroCusto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codForn" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="condPagto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cpfCnpjForn" attributeType="String" syncable="YES"/>
+        <attribute name="dtEmi" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="dtMod" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="dtNeces" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="dtRej" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="enviado" attributeType="Boolean" defaultValueString="NO" indexed="YES" syncable="YES"/>
+        <attribute name="idPedido" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="idSistema" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="idSolicitante" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="motivo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="motivoRejeicao" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nomeForn" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="obs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="solicitante" attributeType="String" syncable="YES"/>
+        <attribute name="statusPedido" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="totalPedido" attributeType="Decimal" defaultValueString="0" syncable="YES"/>
+        <relationship name="itens" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemPedido" inverseName="pedido" inverseEntity="ItemPedido" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ItemPedido" positionX="-65" positionY="99" width="128" height="135"/>
+        <element name="Pedido" positionX="124" positionY="-99" width="128" height="375"/>
+    </elements>
+</model>

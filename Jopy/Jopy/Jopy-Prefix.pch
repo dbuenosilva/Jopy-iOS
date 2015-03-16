@@ -1,0 +1,71 @@
+//
+//  Jopy-Prefix.pch
+//  Jopy
+//
+//  Created by Edson Teco on 13/11/14.
+//  Copyright (c) 2014 gwaya. All rights reserved.
+//
+
+#ifndef Compras_Jopy_Prefix_pch
+#define Compras_Jopy_Prefix_pch
+
+#import <Availability.h>
+
+#ifdef __OBJC__
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#import "NSDictionary+JSONString.h"
+#import "UIViewController+HUD.h"
+#import "SIAlertView.h"
+#import "WebServiceHelper.h"
+#endif
+
+// Debug
+#ifdef DEBUG
+#define debug(format, ...) CFShow((__bridge void *)[NSString stringWithFormat:format, ## __VA_ARGS__]);
+#define debugAlert(format, ...)  {UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%s\n line: %d ", __PRETTY_FUNCTION__, __LINE__] message:(__bridge void *)[NSString stringWithFormat:format, ##__VA_ARGS__]  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil]; [alert show]; [alert release];}
+#else
+#define debug(format, ...)
+#define debugAlert(format, ...)
+#endif
+
+#define debugRect(rect)     debug(@"%s x:%.4f, y:%.4f, w:%.4f, h%.4f", #rect, rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)
+#define debugSize(size)     debug(@"%s w:%.4f, h:%.4f", #size, size.width, size.height)
+#define debugPoint(point)   debug(@"%s x:%.4f, y:%.4f", #point, point.x, point.y)
+
+// Cores
+#define rgba(r, g, b, a)    [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
+#define rgb(r, g, b)        rgba(r, g, b, 1.0f)
+
+// Padrões
+#define COR_BRANCO          rgb(238, 238, 243)
+#define COR_CINZA(a)        rgba(163, 170, 174, a)
+#define COR_AZUL            rgb(37, 55, 70)
+
+#define COR_AZUL_CLARO      rgb(95, 180, 229)
+#define COR_VERDE           rgb(69, 161, 66)
+#define COR_VERMELHO        rgb(255, 69, 57)
+#define COR_VERMELHO_ESCURO rgb(178, 41, 46)
+#define COR_AMARELO         rgb(255, 206, 0)
+
+#define COR_TEXTO   COR_BRANCO
+#define COR_BARRA   COR_AZUL
+
+#define COR_EMITIDO(a)      rgba(95, 180, 229, a)
+#define COR_APROVADO(a)     rgba(69, 161, 66, a)
+#define COR_REJEITADO(a)    rgba(255, 69, 57, a)
+
+#define COR_DEGRADE_INICIAL rgb(10, 34, 64)
+#define COR_DEGRADE_FINAL   rgb(111, 124, 125)
+
+// App ID
+#define APP_ID 123
+
+#define API_URL_BASE @"http://api.jopy.gwaya.com.br"
+#define API_CLIENT_ID @"jopy"
+#define API_CLIENT_SECRET @"Webc4mp0"
+#endif
