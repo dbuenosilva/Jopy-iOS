@@ -71,8 +71,10 @@
     self.txtSenha.tag = 2;
     self.txtSenha.delegate = self;
     
-    [self.btnEntrar setTintColor:COR_AMARELO];
-    [self.btnRecuperarSenha setTintColor:COR_AMARELO];
+//    [self.btnEntrar setTintColor:COR_AMARELO];
+//    [self.btnRecuperarSenha setTintColor:COR_AMARELO];
+    [self.btnEntrar setTintColor:COR_AZUL];
+    [self.btnRecuperarSenha setTintColor:COR_AZUL];
     
     // Configura o TAP para esconder o teclado
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]

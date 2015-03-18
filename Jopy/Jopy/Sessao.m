@@ -175,9 +175,9 @@ NSString * const SessaoInformacoesSalvasNotification = @"br.com.gwaya.SessaoInfo
     NSString *osVersion = [[UIDevice currentDevice] systemVersion];
     
     NSDictionary *dadosParaLogin = @{
-                                     kKEY_API_AUTENTICACAO_POST_CLIENT_ID : API_CLIENT_ID,          // definido no Jopy-Prefix.pch
-                                     kKEY_API_AUTENTICACAO_POST_CLIENT_SECRET : API_CLIENT_SECRET,  // definido no Jopy-Prefix.pch
-                                     kKEY_API_AUTENTICACAO_POST_GRANT_TYPE : @"password",
+//                                     kKEY_API_AUTENTICACAO_POST_CLIENT_ID : API_CLIENT_ID,          // definido no Jopy-Prefix.pch
+//                                     kKEY_API_AUTENTICACAO_POST_CLIENT_SECRET : API_CLIENT_SECRET,  // definido no Jopy-Prefix.pch
+//                                     kKEY_API_AUTENTICACAO_POST_GRANT_TYPE : @"password",
                                      kKEY_API_AUTENTICACAO_POST_USERNAME : login,
                                      kKEY_API_AUTENTICACAO_POST_PASSWORD : senha,
                                      

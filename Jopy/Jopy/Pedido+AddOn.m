@@ -330,17 +330,17 @@
  */
 + (BOOL)removeTodosOsPedidosInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    return YES;
+//    return YES;
     
-//    NSArray *todosOsPedidos = [Pedido pedidosInManagedObjectContext:managedObjectContext];
-//    for (Pedido *pedido in todosOsPedidos) {
-//        if ([ItemPedido removeTodosOsItensDoPedido:pedido inManagedObjectContext:managedObjectContext]) {
-//            [managedObjectContext deleteObject:pedido];
-//        }
-//    }
-//    NSError *error = nil;
-//    [managedObjectContext save:&error];
-//    return (error == nil);
+    NSArray *todosOsPedidos = [Pedido pedidosInManagedObjectContext:managedObjectContext];
+    for (Pedido *pedido in todosOsPedidos) {
+        if ([ItemPedido removeTodosOsItensDoPedido:pedido inManagedObjectContext:managedObjectContext]) {
+            [managedObjectContext deleteObject:pedido];
+        }
+    }
+    NSError *error = nil;
+    [managedObjectContext save:&error];
+    return (error == nil);
 }
 
 @end

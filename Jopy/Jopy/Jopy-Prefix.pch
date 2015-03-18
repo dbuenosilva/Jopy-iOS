@@ -59,13 +59,13 @@
 #define COR_APROVADO(a)     rgba(69, 161, 66, a)
 #define COR_REJEITADO(a)    rgba(255, 69, 57, a)
 
-#define COR_DEGRADE_INICIAL rgb(10, 34, 64)
-#define COR_DEGRADE_FINAL   rgb(111, 124, 125)
+#define COR_DEGRADE_INICIAL COR_BRANCO//rgb(0, 75, 136)
+#define COR_DEGRADE_FINAL   COR_CINZA(1)//rgb(24, 99, 175)
 
 // App ID
 #define APP_ID 123
 
-#define API_URL_BASE @"http://api.jopy.gwaya.com.br"
+#define API_URL_BASE @"http://homologacao.api.jopy.gwaya.com.br"
 #define API_CLIENT_ID @"jopy"
 #define API_CLIENT_SECRET @"Webc4mp0"
 #endif
