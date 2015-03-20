@@ -44,23 +44,23 @@
 // Padrões
 #define COR_BRANCO          rgb(238, 238, 243)
 #define COR_CINZA(a)        rgba(163, 170, 174, a)
-#define COR_AZUL            rgb(37, 55, 70)
+#define COR_AZUL            rgb(33, 104, 184)
 
-#define COR_AZUL_CLARO      rgb(95, 180, 229)
 #define COR_VERDE           rgb(69, 161, 66)
 #define COR_VERMELHO        rgb(255, 69, 57)
-#define COR_VERMELHO_ESCURO rgb(178, 41, 46)
-#define COR_AMARELO         rgb(255, 206, 0)
+#define COR_AMARELO         rgb(255, 170, 0)
 
 #define COR_TEXTO   COR_BRANCO
 #define COR_BARRA   COR_AZUL
 
 #define COR_EMITIDO(a)      rgba(95, 180, 229, a)
-#define COR_APROVADO(a)     rgba(69, 161, 66, a)
-#define COR_REJEITADO(a)    rgba(255, 69, 57, a)
+#define COR_APROVADO(a)     rgba(0, 174, 84, a)
+#define COR_REJEITADO(a)    rgba(255, 0, 0, a)
 
-#define COR_DEGRADE_INICIAL COR_BRANCO//rgb(0, 75, 136)
-#define COR_DEGRADE_FINAL   COR_CINZA(1)//rgb(24, 99, 175)
+#define COR_DEGRADE_INICIAL             rgb(6, 79, 133)
+#define COR_DEGRADE_FINAL               rgb(48, 110, 180)
+#define COR_DEGRADE_INICIAL_INFERIOR    rgb(249, 171, 27)
+#define COR_DEGRADE_FINAL_INFERIOR      rgb(231, 119, 36)
 
 // App ID
 #define APP_ID 123

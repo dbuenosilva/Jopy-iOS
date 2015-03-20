@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "icon_pendentes.png"
+      "filename" : "pendentes.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "icon_pendentes@2x.png"
+      "filename" : "pendentes@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "icon_pendentes@3x.png"
+      "filename" : "pendentes@3x.png"
     }
   ],
   "info" : {

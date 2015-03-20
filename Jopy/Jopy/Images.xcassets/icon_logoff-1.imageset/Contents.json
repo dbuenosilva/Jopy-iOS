@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "icon_logoff.png"
+      "filename" : "logoff.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "icon_logoff@2x.png"
+      "filename" : "logoff@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "icon_logoff@3x.png"
+      "filename" : "logoff@3x.png"
     }
   ],
   "info" : {

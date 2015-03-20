@@ -25,6 +25,13 @@
 @property (nonatomic) CGFloat keyboardOverlap;
 @property (strong, nonatomic) UITextField *currentResponder;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgCheck;
+
+@property (weak, nonatomic) IBOutlet UIView *faixaInferior;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintHeightFaixaInferior;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintWidthImgCheck;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintHeightImgCheck;
+
 @end
 
 @implementation LoginViewController
@@ -71,10 +78,8 @@
     self.txtSenha.tag = 2;
     self.txtSenha.delegate = self;
     
-//    [self.btnEntrar setTintColor:COR_AMARELO];
-//    [self.btnRecuperarSenha setTintColor:COR_AMARELO];
-    [self.btnEntrar setTintColor:COR_AZUL];
-    [self.btnRecuperarSenha setTintColor:COR_AZUL];
+    [self.btnEntrar setTintColor:COR_AMARELO];
+    [self.btnRecuperarSenha setTintColor:COR_BRANCO];
     
     // Configura o TAP para esconder o teclado
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -83,16 +88,81 @@
     [self.view addGestureRecognizer:tap];
     
     self.container.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = COR_DEGRADE_INICIAL;
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[COR_DEGRADE_INICIAL CGColor], (id)[COR_DEGRADE_FINAL CGColor], nil];
+    gradient.frame = self.view.frame;
+    gradient.colors = [NSArray arrayWithObjects:(id)[COR_DEGRADE_INICIAL CGColor], (id)[COR_DEGRADE_FINAL CGColor], (id)[COR_DEGRADE_INICIAL CGColor], nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
+
+    [self viabilizaMostrarImagemAbaixoDoLogin];
+    
+    [self atualizaDegrade];
+}
+
+/**
+ * Atualiza o degrade conforme tamanho da view
+ */
+- (void)atualizaDegrade
+{
+    [self.view layoutIfNeeded];
+    [self.faixaInferior layoutIfNeeded];
     
     CGRect frame = self.view.frame;
-    frame.size.height = [self screenSize].height;
-    frame.size.width = [self screenSize].width;
+    CGFloat tamanho = ([self screenSize].height>[self screenSize].width)?[self screenSize].height:[self screenSize].width;
+    frame.size.height = tamanho;
+    frame.size.width = tamanho;
     [[[self.view.layer sublayers] objectAtIndex:0] setFrame:frame];
+
+    CAGradientLayer *gradientFaixaInferior = [CAGradientLayer layer];
+    gradientFaixaInferior.frame = self.faixaInferior.bounds;
+    gradientFaixaInferior.startPoint = CGPointMake(0.0, 0.5);
+    gradientFaixaInferior.endPoint = CGPointMake(1.0, 0.5);
+    gradientFaixaInferior.colors = [NSArray arrayWithObjects:(id)[COR_DEGRADE_INICIAL_INFERIOR CGColor], (id)[COR_DEGRADE_FINAL_INFERIOR CGColor], nil];
+    
+    [self.faixaInferior.layer insertSublayer:gradientFaixaInferior atIndex:(unsigned int)self.faixaInferior.layer.sublayers.count];
+}
+
+/**
+ * Verifica o espaço disponível entre a base do container do login e a parte inferior da tela para ver se cabe a imagem
+ */
+- (void)viabilizaMostrarImagemAbaixoDoLogin
+{
+    self.constraintHeightImgCheck.constant = 110;
+    self.constraintWidthImgCheck.constant = 110;
+    self.constraintHeightFaixaInferior.constant = 32;
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        if ([[UIScreen mainScreen] bounds].size.height == 568) {
+            self.constraintHeightImgCheck.constant = 95;
+            self.constraintWidthImgCheck.constant = 95;
+            self.constraintHeightFaixaInferior.constant = 16;
+        }
+        else if ([[UIScreen mainScreen] bounds].size.height == 667) {
+            
+        }
+        else if ([[UIScreen mainScreen] bounds].size.height == 736) {
+            
+        }
+        else {
+            self.constraintHeightImgCheck.constant = 65;
+            self.constraintWidthImgCheck.constant = 65;
+            self.constraintHeightFaixaInferior.constant = 16;
+        }
+    }
+    else {
+        self.constraintHeightImgCheck.constant = 120;
+        self.constraintWidthImgCheck.constant = 120;
+        self.constraintHeightFaixaInferior.constant = 56;
+    }
+    
+    [self.imgCheck layoutIfNeeded];
+    [self.faixaInferior layoutIfNeeded];
+    [self.container layoutIfNeeded];
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.imgCheck.alpha = ([self screenSize].height - (self.container.frame.origin.y + self.container.frame.size.height) >= self.imgCheck.frame.size.height)?1.0:0.0;
+    }];
 }
 
 /**
@@ -205,10 +275,9 @@
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     // Atualiza o degradé ao rotacionar
-    CGRect frame = self.view.frame;
-    frame.size.height = [self screenSize].height;
-    frame.size.width = [self screenSize].width;
-    [[[self.view.layer sublayers] objectAtIndex:0] setFrame:frame];
+    [self atualizaDegrade];
+    
+    [self viabilizaMostrarImagemAbaixoDoLogin];
 }
 
 #pragma mark -

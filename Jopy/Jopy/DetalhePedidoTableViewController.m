@@ -35,13 +35,18 @@
 @interface DetalhePedidoTableViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
-@property (strong, nonatomic) UIBarButtonItem *btnAprovar;
-@property (strong, nonatomic) UIBarButtonItem *btnRejeitar;
+@property (strong, nonatomic) UIBarButtonItem *btnBarAprovar;
+@property (strong, nonatomic) UIBarButtonItem *btnBarRejeitar;
 @property (strong, nonatomic) NSArray *itensPedido;
 @property (strong, nonatomic) MBProgressHUD *hudObservacoes;
 @property (strong, nonatomic) NSDateFormatter *dateFormat;
 
 @property (strong, nonatomic) UIAlertView *motivoRejeicao;
+
+@property (strong, nonatomic) CAGradientLayer *faixaInferior;
+@property (strong, nonatomic) UIButton *btnAprovar;
+@property (strong, nonatomic) UIButton *btnRejeitar;
+@property (strong, nonatomic) UIView *vwSeparador;
 
 @end
 
@@ -96,6 +101,57 @@
         [_motivoRejeicao textFieldAtIndex:0].enablesReturnKeyAutomatically = YES;
     }
     return _motivoRejeicao;
+}
+
+- (CAGradientLayer *)faixaInferior
+{
+    if (!_faixaInferior) {
+        _faixaInferior = [CAGradientLayer layer];
+        _faixaInferior.startPoint = CGPointMake(0.0, 0.5);
+        _faixaInferior.endPoint = CGPointMake(1.0, 0.5);
+        _faixaInferior.colors = [NSArray arrayWithObjects:(id)[COR_AMARELO CGColor], (id)[COR_AMARELO CGColor], nil];
+        
+        CGRect frame = self.navigationController.toolbar.bounds;
+        frame.origin.y = frame.size.height;
+        _faixaInferior.frame = frame;
+        [_faixaInferior layoutIfNeeded];
+
+        [self.navigationController.toolbar.layer addSublayer:_faixaInferior];
+    }
+    return _faixaInferior;
+}
+
+- (UIButton *)btnAprovar
+{
+    if (!_btnAprovar) {
+        _btnAprovar = [[UIButton alloc] init];
+        [_btnAprovar setBackgroundColor:COR_APROVADO(1.0)];
+        [_btnAprovar setTitleColor:COR_BRANCO forState:UIControlStateNormal];
+        [_btnAprovar setTitle:@"Aprovar" forState:UIControlStateNormal];
+        [_btnAprovar addTarget:self action:@selector(aprovar:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _btnAprovar;
+}
+
+- (UIButton *)btnRejeitar
+{
+    if (!_btnRejeitar) {
+        _btnRejeitar = [[UIButton alloc] init];
+        [_btnRejeitar setBackgroundColor:COR_REJEITADO(1.0)];
+        [_btnRejeitar setTitleColor:COR_BRANCO forState:UIControlStateNormal];
+        [_btnRejeitar setTitle:@"Rejeitar" forState:UIControlStateNormal];
+        [_btnRejeitar addTarget:self action:@selector(rejeitar:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _btnRejeitar;
+}
+
+- (UIView *)vwSeparador
+{
+    if (!_vwSeparador) {
+        _vwSeparador = [[UIView alloc] init];
+        _vwSeparador.backgroundColor = COR_BRANCO;
+    }
+    return _vwSeparador;
 }
 
 #pragma mark -
@@ -234,6 +290,47 @@
 }
 
 /**
+ *  Método para configurar a faixa amarela na base do toolbar
+ */
+- (void)configuraFaixaNoToolbar
+{
+    CGRect frame = self.navigationController.toolbar.bounds;
+    frame.origin.y = frame.size.height - 4.0f;
+    self.faixaInferior.frame = frame;
+    [self.faixaInferior layoutIfNeeded];
+    
+//    [self.faixaInferior removeFromSuperlayer];
+
+}
+
+/**
+ *  Método para redimensionar e reposicionar os botoes de aprovar e rejeitar dentro do toolbar
+ */
+- (void)posicionaBotaoAprovarERejeitarNoToolbar
+{
+    CGRect frame = self.navigationController.toolbar.bounds;
+    frame.size.width = frame.size.width/2;
+    
+    [self.btnAprovar setFrame:frame];
+    [self.btnRejeitar setFrame:frame];
+    
+    [self.btnAprovar layoutIfNeeded];
+    [self.btnRejeitar layoutIfNeeded];
+}
+
+/**
+ *  Método para redimensionar o separador branco no toolbar da tela de histórico
+ */
+- (void)redimensionaSeparadorNoToolbar
+{
+    CGRect frame = self.navigationController.toolbar.bounds;
+    frame.size.width = 8.0f;
+    frame.origin.x = self.navigationController.toolbar.bounds.size.width/2 - 4.0f;
+    [self.vwSeparador setFrame:frame];
+    [self.vwSeparador layoutIfNeeded];
+}
+
+/**
  *  Método para criar e adicionar os botões Aprovar e Rejeitar no toolbar inferior
  */
 - (void)montaBotoesDeAcaoNoToolbar
@@ -244,22 +341,24 @@
     if (!self.modoHistorico) {
         if ([self.pedido.statusPedido isEqualToString:PStatusPedidoEmitido]) {
             
-            [self.navigationController.toolbar setBarTintColor:COR_EMITIDO(1.0)];
+            UIBarButtonItem *margem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                                                    target:nil
+                                                                                    action:nil];
+            [margem setWidth:-20.0f];
             
-            self.btnAprovar = [[UIBarButtonItem alloc] initWithTitle:@"Aprovar"
-                                                               style:UIBarButtonItemStylePlain
-                                                              target:self
-                                                              action:@selector(aprovar:)];
-            [self.btnAprovar setTintColor:COR_BRANCO];
-            self.btnRejeitar = [[UIBarButtonItem alloc] initWithTitle:@"Rejeitar"
-                                                                style:UIBarButtonItemStylePlain
-                                                               target:self
-                                                               action:@selector(rejeitar:)];
-            self.btnRejeitar.tintColor = COR_BRANCO;
+            [self posicionaBotaoAprovarERejeitarNoToolbar];
             
-            [self setToolbarItems:@[self.btnRejeitar,
+            self.btnBarAprovar = [[UIBarButtonItem alloc] initWithCustomView:self.btnAprovar];
+            self.btnBarRejeitar = [[UIBarButtonItem alloc] initWithCustomView:self.btnRejeitar];
+            
+            [self setToolbarItems:@[margem,
+                                    self.btnBarRejeitar,
                                     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                                    self.btnAprovar] animated:YES];
+                                    self.btnBarAprovar,
+                                    margem] animated:YES];
+
+            [self.navigationController.toolbar setBarTintColor:COR_BRANCO];
+
         }
         else {
             NSString *statusDoPedido;
@@ -295,37 +394,39 @@
     else {
         [self.navigationController.toolbar setBarTintColor:COR_AZUL];
         
-        self.btnAprovar = [[UIBarButtonItem alloc] initWithTitle:@"Anterior"
+        self.btnBarAprovar = [[UIBarButtonItem alloc] initWithTitle:@"Anterior"
                                                            style:UIBarButtonItemStylePlain
                                                           target:self
                                                           action:@selector(anterior:)];
         
         UIBarButtonItem *btnAnterior = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"icon_previous"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(anterior:)];
 
-        self.btnRejeitar = [[UIBarButtonItem alloc] initWithTitle:@"Próximo"
+        self.btnBarRejeitar = [[UIBarButtonItem alloc] initWithTitle:@"Próximo"
                                                             style:UIBarButtonItemStylePlain
                                                            target:self
                                                            action:@selector(proximo:)];
         
         UIBarButtonItem *btnProximo = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"icon_next"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style:UIBarButtonItemStylePlain target:self action:@selector(proximo:)];
         
-        UIView *vwSeparador = [[UIView alloc] initWithFrame:CGRectMake(0, 6, 1, 32)];
-        vwSeparador.backgroundColor = COR_CINZA(1.0);
-        UIBarButtonItem *btnSeparador = [[UIBarButtonItem alloc] initWithCustomView:vwSeparador];
+        UIBarButtonItem *btnSeparador = [[UIBarButtonItem alloc] initWithCustomView:self.vwSeparador];
+
+        [self redimensionaSeparadorNoToolbar];
         
-        [self.btnAprovar setTintColor:COR_CINZA(1.0)];
-        [btnAnterior setTintColor:COR_CINZA(1.0)];
-        self.btnRejeitar.tintColor = COR_CINZA(1.0);
-        [btnProximo setTintColor:COR_CINZA(1.0)];
+        [self.btnBarAprovar setTintColor:COR_BRANCO];
+        [btnAnterior setTintColor:COR_BRANCO];
+        [self.btnBarRejeitar setTintColor:COR_BRANCO];
+        [btnProximo setTintColor:COR_BRANCO];
         
         [self setToolbarItems:@[btnAnterior,
-                                self.btnAprovar,
+                                self.btnBarAprovar,
                                 [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
                                 btnSeparador,
                                 [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                                self.btnRejeitar,
+                                self.btnBarRejeitar,
                                 btnProximo] animated:YES];
     }
+    
+    [self configuraFaixaNoToolbar];
 }
 
 /**
@@ -522,6 +623,8 @@
     else {
         [self.navigationController popViewControllerAnimated:YES];
     }
+
+    [self montaBotoesDeAcaoNoToolbar];
 }
 
 - (void)didReceiveMemoryWarning
@@ -535,7 +638,16 @@
 {
     [super viewWillAppear:animated];
     
-    [self montaBotoesDeAcaoNoToolbar];
+    [self posicionaBotaoAprovarERejeitarNoToolbar];
+    [self configuraFaixaNoToolbar];
+    [self redimensionaSeparadorNoToolbar];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self posicionaBotaoAprovarERejeitarNoToolbar];
+    [self configuraFaixaNoToolbar];
+    [self redimensionaSeparadorNoToolbar];
 }
 
 #pragma mark -
@@ -701,19 +813,41 @@
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    UIView *viewTitulo = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 34.0f)];
+    viewTitulo.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    UIView *faixaAmarela = [[UIView alloc] initWithFrame:CGRectMake(0, 32.0f, self.tableView.frame.size.width*2, 2)];
+    faixaAmarela.backgroundColor = COR_AMARELO;
+    [viewTitulo addSubview:faixaAmarela];
+    
+    UILabel *lblTitulo = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.tableView.frame.size.width-20, 32.0f)];
+    lblTitulo.textAlignment = NSTextAlignmentLeft;
+    lblTitulo.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    lblTitulo.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    lblTitulo.textColor = COR_CINZA(1.0);
+    lblTitulo.backgroundColor = [UIColor clearColor];
+
+    [viewTitulo addSubview:lblTitulo];
+    
     switch (section) {
         case TV_SESSAO_DADOS:
-            return TV_SESSAO_DADOS_TITULO;
+        {
+            lblTitulo.text = [TV_SESSAO_DADOS_TITULO uppercaseString];
+            return viewTitulo;
+        }
             break;
-
+            
         case TV_SESSAO_ITENS:
-            return TV_SESSAO_ITENS_TITULO;
+        {
+            lblTitulo.text = [TV_SESSAO_ITENS_TITULO uppercaseString];
+            return viewTitulo;
+        }
             break;
             
         default:
-            return @"";
+            return [[UIView alloc] initWithFrame:CGRectZero];
             break;
     }
 }
