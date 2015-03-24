@@ -19,7 +19,6 @@
 		C229F88C1A15201400B3D7D9 /* JopyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C229F88B1A15201400B3D7D9 /* JopyTests.m */; };
 		C229F8971A15245600B3D7D9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C229F8961A15245600B3D7D9 /* LoginViewController.m */; };
 		C269EF251A1E725A007C05B4 /* DetalhePedidoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C269EF241A1E725A007C05B4 /* DetalhePedidoTableViewController.m */; };
-		C2910C9F1A1CD1E5007A799C /* OpcoesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2910C9E1A1CD1E5007A799C /* OpcoesTableViewController.m */; };
 		C29126E91A3A794C00B257CD /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29126E71A3A794C00B257CD /* Crashlytics.framework */; };
 		C29126EA1A3A794C00B257CD /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C29126E81A3A794C00B257CD /* Fabric.framework */; };
 		C2A9DC891A1BD35A0064376A /* ItemPedido+AddOn.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A9DC881A1BD35A0064376A /* ItemPedido+AddOn.m */; };
@@ -91,8 +90,6 @@
 		C229F8961A15245600B3D7D9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C269EF231A1E725A007C05B4 /* DetalhePedidoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetalhePedidoTableViewController.h; sourceTree = "<group>"; };
 		C269EF241A1E725A007C05B4 /* DetalhePedidoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetalhePedidoTableViewController.m; sourceTree = "<group>"; };
-		C2910C9D1A1CD1E5007A799C /* OpcoesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpcoesTableViewController.h; sourceTree = "<group>"; };
-		C2910C9E1A1CD1E5007A799C /* OpcoesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpcoesTableViewController.m; sourceTree = "<group>"; };
 		C29126E71A3A794C00B257CD /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C29126E81A3A794C00B257CD /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		C2A9DC871A1BD35A0064376A /* ItemPedido+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ItemPedido+AddOn.h"; sourceTree = "<group>"; };
@@ -225,8 +222,6 @@
 				C269EF241A1E725A007C05B4 /* DetalhePedidoTableViewController.m */,
 				C2125CAA1A1FAC6D00C51476 /* ItemPedidoTableViewCell.h */,
 				C2125CAB1A1FAC6D00C51476 /* ItemPedidoTableViewCell.m */,
-				C2910C9D1A1CD1E5007A799C /* OpcoesTableViewController.h */,
-				C2910C9E1A1CD1E5007A799C /* OpcoesTableViewController.m */,
 				C2C391111A6EE85600A5B3F5 /* SobreViewController.h */,
 				C2C391121A6EE85600A5B3F5 /* SobreViewController.m */,
 				C229F8791A15201400B3D7D9 /* Main.storyboard */,
@@ -497,7 +492,6 @@
 				C2B3B6A01A153267000C3DD9 /* UIProgressView+AFNetworking.m in Sources */,
 				C2CEE9A31A1BB73900F2B091 /* ArrayDataSource.m in Sources */,
 				C2A9DC8C1A1BDC6E0064376A /* PedidoFactory.m in Sources */,
-				C2910C9F1A1CD1E5007A799C /* OpcoesTableViewController.m in Sources */,
 				C2B3B69A1A153267000C3DD9 /* AFURLSessionManager.m in Sources */,
 				C2B3B6981A153267000C3DD9 /* AFURLRequestSerialization.m in Sources */,
 				C229F8721A15201400B3D7D9 /* AppDelegate.m in Sources */,

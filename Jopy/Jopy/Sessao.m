@@ -175,9 +175,6 @@ NSString * const SessaoInformacoesSalvasNotification = @"br.com.gwaya.SessaoInfo
     NSString *osVersion = [[UIDevice currentDevice] systemVersion];
     
     NSDictionary *dadosParaLogin = @{
-//                                     kKEY_API_AUTENTICACAO_POST_CLIENT_ID : API_CLIENT_ID,          // definido no Jopy-Prefix.pch
-//                                     kKEY_API_AUTENTICACAO_POST_CLIENT_SECRET : API_CLIENT_SECRET,  // definido no Jopy-Prefix.pch
-//                                     kKEY_API_AUTENTICACAO_POST_GRANT_TYPE : @"password",
                                      kKEY_API_AUTENTICACAO_POST_USERNAME : login,
                                      kKEY_API_AUTENTICACAO_POST_PASSWORD : senha,
                                      
@@ -221,7 +218,22 @@ NSString * const SessaoInformacoesSalvasNotification = @"br.com.gwaya.SessaoInfo
  */
 + (void)efetuaLogoff
 {
-    [Sessao apagaInformacoesDeLogin];
+    NSString *authorization = [NSString stringWithFormat:@"%@ %@", [Sessao tokenType], [Sessao accessToken]];
+    
+    [[WebServiceHelper sharedClient].requestSerializer setValue:authorization forHTTPHeaderField:kKEY_API_HEADER];
+    [[WebServiceHelper sharedClient]
+     GET:kKEY_API_LOGOUT_GET
+     parameters:nil
+     success:^(NSURLSessionDataTask *task, id responseObject) {
+         
+         [Sessao apagaInformacoesDeLogin];
+         
+     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+         
+         debug(@"Falha ao tentar realizar logoff");
+         [Sessao apagaInformacoesDeLogin];
+         
+     }];
 }
 
 /**

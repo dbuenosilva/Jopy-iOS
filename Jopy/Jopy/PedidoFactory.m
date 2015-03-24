@@ -29,14 +29,6 @@
     NSDateFormatter *dateFormat;
     dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
-
-//    NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-//    [dateFormat setTimeZone:gmt];
-
-//    NSTimeInterval timeZoneOffset = [[NSTimeZone defaultTimeZone] secondsFromGMT];
-//    NSTimeInterval gmtTimeInterval = [data timeIntervalSinceReferenceDate] - timeZoneOffset;
-//    NSDate *gmtDate = [NSDate dateWithTimeIntervalSinceReferenceDate:gmtTimeInterval];
-//    NSDictionary *parametros = @{ kKEY_API_PEDIDO_COMPRA_GET_FILTRO_DATA : [dateFormat stringFromDate:gmtDate] };
     
     NSDictionary *parametros = @{ kKEY_API_PEDIDO_COMPRA_GET_FILTRO_DATA : [dateFormat stringFromDate:data] };
     debug(@"%@", parametros);
@@ -49,9 +41,9 @@
          
          NSString *mensagemRetorno = [WebServiceHelper trataErroHTTP:(NSHTTPURLResponse *)task.response error:nil];
          if (mensagemRetorno.length == 0) {
-             if ([responseObject isKindOfClass:[NSArray class]]) {
-                 
-                 completion((NSArray *)responseObject, nil);
+             if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                 NSArray *pedidos = [(NSDictionary *)responseObject objectForKey:kKEY_API_PEDIDO_COMPRA_RESPONSE_PEDIDOS];
+                 completion(pedidos, nil);
              }
              else {
                  completion(nil, @"Não foi possível obter resposta do servidor.");

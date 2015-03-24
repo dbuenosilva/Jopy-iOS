@@ -39,6 +39,7 @@
 #define kKEY_API_PEDIDO_COMPRA_GET_FILTRO_COD_FORNECEDOR @"codForn"
 #define kKEY_API_PEDIDO_COMPRA_GET_FILTRO_DATA @"gte"
 
+#define kKEY_API_PEDIDO_COMPRA_RESPONSE_PEDIDOS @"pedidos"
 #define kKEY_API_PEDIDO_COMPRA_RESPONSE_ID @"_id"
 #define kKEY_API_PEDIDO_COMPRA_RESPONSE_ID_SISTEMA @"idSistema"
 #define kKEY_API_PEDIDO_COMPRA_RESPONSE_APROVADORES @"aprovadores"          // '123456|123457|123458'
@@ -73,6 +74,7 @@
 
 #define kKEY_API_USER_INFO_GET @"/api/v1/userinfo"
 #define kKEY_API_ABOUT_GET @"/api/v1/about"
+#define kKEY_API_LOGOUT_GET @"/api/v1/logout"
 
 FOUNDATION_EXPORT NSString * const WebServiceHelperServicoIndisponivelNotification;
 FOUNDATION_EXPORT NSString * const WebServiceHelperClienteNaoAutenticadoNotification;
