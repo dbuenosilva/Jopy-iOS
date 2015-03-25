@@ -47,6 +47,7 @@
     else {
         novoPedido.enviado = @YES;
     }
+    debug(@"- %@", novoPedido.statusPedido);
     novoPedido.nomeForn = [WebServiceHelper trataValor:pedidoDict[kKEY_API_PEDIDO_COMPRA_RESPONSE_NOME_FORNECEDOR]];
     novoPedido.cpfCnpjForn = [WebServiceHelper trataValor:pedidoDict[kKEY_API_PEDIDO_COMPRA_RESPONSE_CPF_CNPJ_FORNECEDOR]];
     novoPedido.codForn = [WebServiceHelper trataValor:pedidoDict[kKEY_API_PEDIDO_COMPRA_RESPONSE_COD_FORNECEDOR]];
@@ -149,7 +150,12 @@
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
     request.predicate = [NSPredicate predicateWithFormat:@"statusPedido == %@ AND arquivo == NO AND aprovadores contains[cd] %@", status, aprovador];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"dtNeces" ascending:YES]];
+    if ([status isEqualToString:PStatusPedidoAprovado]) {
+        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"dtMod" ascending:NO]];
+    }
+    else {
+        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"dtNeces" ascending:YES]];
+    }
     return request;
 }
 
@@ -163,7 +169,7 @@
 + (NSFetchRequest *)requestDePedidosDoFornecedor:(NSString *)codFornecedor
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
-    request.predicate = [NSPredicate predicateWithFormat:@"statusPedido != 'emitido' AND codForn == %@", codFornecedor];
+    request.predicate = [NSPredicate predicateWithFormat:@"statusPedido != %@ AND statusPedido != %@ AND codForn == %@", PStatusPedidoDeletado, PStatusPedidoEmitido, codFornecedor];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"dtNeces" ascending:NO]];
     return request;
 }
@@ -176,7 +182,7 @@
 + (NSFetchRequest *)requestDePedidosPendentesDeEnvio
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
-    request.predicate = [NSPredicate predicateWithFormat:@"statusPedido != 'emitido' AND enviado == NO"];
+    request.predicate = [NSPredicate predicateWithFormat:@"statusPedido != %@ AND enviado == NO", PStatusPedidoEmitido];
     return request;
 }
 

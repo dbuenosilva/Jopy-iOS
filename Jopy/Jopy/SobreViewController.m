@@ -96,8 +96,10 @@
 
 - (IBAction)logoff:(id)sender
 {
+    [self mostraHudComTexto:@"Saindo..."];
     [Pedido removeTodosOsPedidosInManagedObjectContext:self.appDelegate.managedObjectContext];
     [Sessao efetuaLogoff];
+    [self escondeHud];
     [self.appDelegate abreLogin];
 }
 

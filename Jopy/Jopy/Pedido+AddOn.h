@@ -11,6 +11,7 @@
 #define PStatusPedidoEmitido @"emitido"
 #define PStatusPedidoAprovado @"aprovado"
 #define PStatusPedidoRejeitado @"rejeitado"
+#define PStatusPedidoDeletado @"deletado"
 
 @interface Pedido (AddOn)
 
