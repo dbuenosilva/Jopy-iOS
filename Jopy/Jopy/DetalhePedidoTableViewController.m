@@ -680,6 +680,7 @@
                       handler:^(SIAlertView *alert) {
                           
                           self.pedido.statusPedido = PStatusPedidoAprovado;
+                          self.pedido.dtAprov = [NSDate date];
                           self.pedido.dtMod = [NSDate date];
                           self.pedido.enviado = [NSNumber numberWithBool:NO];
                           

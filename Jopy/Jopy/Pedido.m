@@ -16,9 +16,11 @@
 @dynamic centroCusto;
 @dynamic codForn;
 @dynamic cpfCnpjForn;
+@dynamic dtAprov;
 @dynamic dtEmi;
 @dynamic dtMod;
 @dynamic dtNeces;
+@dynamic dtRej;
 @dynamic enviado;
 @dynamic arquivo;
 @dynamic idPedido;
@@ -32,7 +34,6 @@
 @dynamic statusPedido;
 @dynamic totalPedido;
 @dynamic condPagto;
-@dynamic dtRej;
 @dynamic itens;
 
 @end

@@ -50,7 +50,15 @@
     [numberFormatter setMinimumFractionDigits:2];
     [numberFormatter setRoundingMode:NSNumberFormatterRoundHalfDown];
     
-    self.lblData.text = [dateFormat stringFromDate:pedido.dtNeces];
+    if ([pedido.statusPedido isEqualToString:PStatusPedidoEmitido]) {
+        self.lblData.text = [dateFormat stringFromDate:pedido.dtNeces];
+    }
+    else if ([pedido.statusPedido isEqualToString:PStatusPedidoAprovado]) {
+        self.lblData.text = [dateFormat stringFromDate:pedido.dtAprov];
+    }
+    else if ([pedido.statusPedido isEqualToString:PStatusPedidoRejeitado]) {
+        self.lblData.text = [dateFormat stringFromDate:pedido.dtRej];
+    }
     self.lblFornecedor.text = [pedido.nomeForn capitalizedString];
     self.lblTotal.text = [numberFormatter stringFromNumber:pedido.totalPedido];
     

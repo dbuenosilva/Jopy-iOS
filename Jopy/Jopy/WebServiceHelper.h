@@ -59,6 +59,7 @@
 #define kKEY_API_PEDIDO_COMPRA_RESPONSE_TOTAL_PEDIDO @"totalPedido"         // 6.60
 #define kKEY_API_PEDIDO_COMPRA_RESPONSE_OBS @"obs"                          // 'Observação Observação'
 #define kKEY_API_PEDIDO_COMPRA_RESPONSE_DATA_MODIFICACAO @"dtMod"           // '' -> quando omitida data corrente do servidor
+#define kKEY_API_PEDIDO_COMPRA_RESPONSE_DATA_APROVACAO @"dtAprov"           // '' -> quando omitida data corrente do servidor
 #define kKEY_API_PEDIDO_COMPRA_RESPONSE_ITENS @"itens"
 #define kKEY_API_PEDIDO_COMPRA_RESPONSE_ITEM_ID @"_id"
 #define kKEY_API_PEDIDO_COMPRA_RESPONSE_ITEM_PRODUTO @"produto"             // 'Produto abc'
@@ -71,6 +72,7 @@
 #define kKEY_API_PEDIDO_COMPRA_PUT_STATUS_PEDIDO @"statusPedido" // ['emitido', 'aprovado', 'rejeitado']
 #define kKEY_API_PEDIDO_COMPRA_PUT_DATA_REJEICAO @"dtRej"
 #define kKEY_API_PEDIDO_COMPRA_PUT_MOTIVO_REJEICAO @"motivoRejeicao"
+#define kKEY_API_PEDIDO_COMPRA_PUT_DATA_APROVACAO @"dtAprov"
 
 #define kKEY_API_USER_INFO_GET @"/api/v1/userinfo"
 #define kKEY_API_ABOUT_GET @"/api/v1/about"

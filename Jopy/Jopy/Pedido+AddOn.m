@@ -74,6 +74,9 @@
     data = [WebServiceHelper trataValor:pedidoDict[kKEY_API_PEDIDO_COMPRA_RESPONSE_DATA_REJEICAO]];
     novoPedido.dtRej = (data)?[dateFormat dateFromString:data]:nil;
     
+    data = [WebServiceHelper trataValor:pedidoDict[kKEY_API_PEDIDO_COMPRA_RESPONSE_DATA_APROVACAO]];
+    novoPedido.dtAprov = (data)?[dateFormat dateFromString:data]:nil;
+    
     // Remove todos os itens antes de inserir novamente
     for (ItemPedido *item in novoPedido.itens) {
         [managedObjectContext deleteObject:item];

@@ -160,6 +160,7 @@
 		C2CEE9A51A1BB7CB00F2B091 /* PedidoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PedidoTableViewCell.m; sourceTree = "<group>"; };
 		C2CEE9B31A1BBF9800F2B091 /* Pedido+AddOn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pedido+AddOn.h"; sourceTree = "<group>"; };
 		C2CEE9B41A1BBF9800F2B091 /* Pedido+AddOn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Pedido+AddOn.m"; sourceTree = "<group>"; };
+		C2DF3A101AC3667900EBBF63 /* Jopy 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Jopy 4.xcdatamodel"; sourceTree = "<group>"; };
 		C2F4AA761A3B21E600E05329 /* Jopy 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Jopy 2.xcdatamodel"; sourceTree = "<group>"; };
 		C2F4AA771A3B614300E05329 /* Jopy 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Jopy 3.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -739,11 +740,12 @@
 		C229F8731A15201400B3D7D9 /* Jopy.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C2DF3A101AC3667900EBBF63 /* Jopy 4.xcdatamodel */,
 				C2F4AA771A3B614300E05329 /* Jopy 3.xcdatamodel */,
 				C2F4AA761A3B21E600E05329 /* Jopy 2.xcdatamodel */,
 				C229F8741A15201400B3D7D9 /* Jopy.xcdatamodel */,
 			);
-			currentVersion = C2F4AA771A3B614300E05329 /* Jopy 3.xcdatamodel */;
+			currentVersion = C2DF3A101AC3667900EBBF63 /* Jopy 4.xcdatamodel */;
 			path = Jopy.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -78,7 +78,17 @@
  */
 + (void)aprovaPedido:(Pedido *)pedido completion:(PedidoAlterado)completion
 {
-    NSDictionary *parametros = @{kKEY_API_PEDIDO_COMPRA_PUT_STATUS_PEDIDO : PStatusPedidoAprovado};
+    NSDateFormatter *dateFormat;
+    dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    
+    if (!pedido.dtAprov) {
+        completion(nil, @"Pedido não pode ser aprovado (data inválida)");
+        return;
+    }
+    
+    NSDictionary *parametros = @{kKEY_API_PEDIDO_COMPRA_PUT_STATUS_PEDIDO : PStatusPedidoAprovado,
+                                 kKEY_API_PEDIDO_COMPRA_PUT_DATA_APROVACAO : [dateFormat stringFromDate:pedido.dtAprov]};
     
     [self alteraPedidoComParametros:parametros idPedido:pedido.idPedido completion:completion];
 }

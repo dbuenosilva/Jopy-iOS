@@ -17,9 +17,11 @@
 @property (nonatomic, retain) NSString * centroCusto;
 @property (nonatomic, retain) NSString * codForn;
 @property (nonatomic, retain) NSString * cpfCnpjForn;
+@property (nonatomic, retain) NSDate * dtAprov;
 @property (nonatomic, retain) NSDate * dtEmi;
 @property (nonatomic, retain) NSDate * dtMod;
 @property (nonatomic, retain) NSDate * dtNeces;
+@property (nonatomic, retain) NSDate * dtRej;
 @property (nonatomic, retain) NSNumber * enviado;
 @property (nonatomic, retain) NSNumber * arquivo;
 @property (nonatomic, retain) NSString * idPedido;
@@ -33,7 +35,6 @@
 @property (nonatomic, retain) NSString * statusPedido;
 @property (nonatomic, retain) NSNumber * totalPedido;
 @property (nonatomic, retain) NSString * condPagto;
-@property (nonatomic, retain) NSDate * dtRej;
 @property (nonatomic, retain) NSSet *itens;
 @end
 
