@@ -116,6 +116,9 @@
 
     CAGradientLayer *gradientFaixaInferior = [CAGradientLayer layer];
     gradientFaixaInferior.frame = self.faixaInferior.bounds;
+    frame = gradientFaixaInferior.frame;
+    frame.size.width = tamanho;
+    gradientFaixaInferior.frame = frame;
     gradientFaixaInferior.startPoint = CGPointMake(0.0, 0.5);
     gradientFaixaInferior.endPoint = CGPointMake(1.0, 0.5);
     gradientFaixaInferior.colors = [NSArray arrayWithObjects:(id)[COR_DEGRADE_INICIAL_INFERIOR CGColor], (id)[COR_DEGRADE_FINAL_INFERIOR CGColor], nil];
@@ -262,6 +265,11 @@
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
