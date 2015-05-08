@@ -197,15 +197,8 @@
 + (NSFetchRequest *)requestDaUltimaDataDeModificacao
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
-    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"dtMod"];
-    NSExpression *maxDateExpression = [NSExpression expressionForFunction:@"max:"
-                                                      arguments:[NSArray arrayWithObject:keyPathExpression]];
-    NSExpressionDescription *d = [[NSExpressionDescription alloc] init];
-    [d setName:@"maxDate"];
-    [d setExpression:maxDateExpression];
-    [d setExpressionResultType:NSDateAttributeType];
-    
-    [request setPropertiesToFetch:[NSArray arrayWithObject:d]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"dtMod" ascending:NO]];
+    request.fetchLimit = 1;
     return request;
 }
 
