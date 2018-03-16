@@ -65,7 +65,7 @@
 // App ID
 #define APP_ID 123
 
-#define API_URL_BASE @"http://homologacao.api.jopy.gwaya.com.br"
+#define API_URL_BASE @"http://api.jopy.gwaya.com.br"
 #define API_CLIENT_ID @"jopy"
 #define API_CLIENT_SECRET @"Webc4mp0"
 #endif
