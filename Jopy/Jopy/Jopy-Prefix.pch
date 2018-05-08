@@ -62,7 +62,7 @@
 #define COR_DEGRADE_INICIAL_INFERIOR    rgb(249, 171, 27)
 #define COR_DEGRADE_FINAL_INFERIOR      rgb(231, 119, 36)
 
-// App ID
+// App ID1
 #define APP_ID 123
 
 #define API_URL_BASE @"http://api.jopy.gwaya.com.br"

@@ -73,6 +73,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
+    self.txtTexto.text = [NSString stringWithFormat:@"Jopy é uma solução para otimizar o trabalho no dia a dia com o sistema de compras da empresa. Por ele é possível aprovar ou rejeitar pedidos a partir de um dispositivo mobile. A atualização dos pedidos é sincronizada com o ERP possibilitando o trabalho de maneira remota. Você pode analisar os pedidos mesmo quando não há conexão com a internet. Os dados analisados ficam armazenados no banco de dados do dispositivo até que seja estabelecida uma conexão com a internet enviando as informações automaticamente. O aplicativo oferece o histórico de pedidos proporcionando análise de compras por fornecedor, produto e/ou centro de custo."];
     
     [self.txtTexto setContentOffset:CGPointZero];
     [self.txtTexto scrollRectToVisible:CGRectZero animated:NO];
@@ -80,6 +82,8 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    self.txtTexto.text = [NSString stringWithFormat:@"Jopy é uma solução para otimizar o trabalho no dia a dia com o sistema de compras da empresa. Por ele é possível aprovar ou rejeitar pedidos a partir de um dispositivo mobile. A atualização dos pedidos é sincronizada com o ERP possibilitando o trabalho de maneira remota. Você pode analisar os pedidos mesmo quando não há conexão com a internet. Os dados analisados ficam armazenados no banco de dados do dispositivo até que seja estabelecida uma conexão com a internet enviando as informações automaticamente. O aplicativo oferece o histórico de pedidos proporcionando análise de compras por fornecedor, produto e/ou centro de custo."];
+    
     [self.txtTexto setContentOffset:CGPointZero];
     [self.txtTexto scrollRectToVisible:CGRectZero animated:YES];
 }
